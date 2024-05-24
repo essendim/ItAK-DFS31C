@@ -1,8 +1,5 @@
 include .env
 
-USER_NAME=MehdiEssendi
-USER_EMAIL=m.essendi@it-students.fr
-
 OUTPUT_DIR = ~/Workspace/IT-Akademy/ItAK-DFS31C
 
 all: $(USER_NAME)_file

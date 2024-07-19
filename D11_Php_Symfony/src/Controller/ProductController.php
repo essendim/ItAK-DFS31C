@@ -1,5 +1,6 @@
 <?php
 // src/Controller/ProductController.php
+
 namespace App\Controller;
 
 use App\Entity\Product;
@@ -14,24 +15,33 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     private $productAdapter;
-    private $produitRepository;
+    private $productRepository;
 
     public function __construct(ProductAdapter $productAdapter, ProductRepository $productRepository)
     {
         $this->productAdapter = $productAdapter;
-        $this->produitRepository = $productRepository;
+        $this->productRepository = $productRepository;
     }
 
     #[Route('/product', name: 'produit_create')]
     public function create(Request $request): Response
     {
-        $produit = new Product();
-        $form = $this->createForm(ProductType::class, $produit);
+        $product = new Product();
+        $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $success = $this->productAdapter->save($produit);
-            return new Response($success ? '<h1>Product enregistré avec succès !</h1>' : '<h1>Échec de l\'enregistrement du produit.</h1>');
+            $success = $this->productAdapter->save($product);
+
+            // Ajouter un message de succès ou d'erreur à la session
+            if ($success) {
+                $this->addFlash('success', 'Product enregistré avec succès !');
+            } else {
+                $this->addFlash('error', 'Échec de l\'enregistrement du produit.');
+            }
+
+            // Rediriger pour éviter la soumission du formulaire à nouveau
+            return $this->redirectToRoute('produit_create');
         }
 
         return $this->render('product/create.html.twig', [
@@ -42,7 +52,7 @@ class ProductController extends AbstractController
     #[Route('/product_list', name: 'produit_list')]
     public function list(): Response
     {
-        $produits = $this->produitRepository->findAll();
+        $produits = $this->productRepository->findAll();
         $threshold = 100; // Exemple de seuil pour afficher ✨
 
         return $this->render('product/list.html.twig', [

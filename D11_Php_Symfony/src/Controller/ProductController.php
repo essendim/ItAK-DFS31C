@@ -2,33 +2,37 @@
 
 namespace App\Controller;
 
-use App\Adapter\PersistenceInterface;
+use App\Entity\Produit;
+use App\Form\ProductType;
+use App\Service\ProductAdapter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-    private $persistence;
+    private $productAdapter;
 
-    public function __construct(PersistenceInterface $persistence)
+    public function __construct(ProductAdapter $productAdapter)
     {
-        $this->persistence = $persistence;
+        $this->productAdapter = $productAdapter;
     }
 
-    /**
-     * @Route("/produit/save", name="produit_save")
-     */
-    public function save(): Response
+    #[Route('/produit', name: 'produit_create')]
+    public function create(Request $request): Response
     {
-        $productData = [
-            'id' => 1,
-            'name' => 'Sample Product',
-            'price' => 100
-        ];
+        $produit = new Produit();
+        $form = $this->createForm(ProductType::class, $produit);
+        $form->handleRequest($request);
 
-        $success = $this->persistence->save($productData);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $success = $this->productAdapter->save($produit);
+            return new Response($success ? '<h1>Produit enregistré avec succès !</h1>' : '<h1>Échec de l\'enregistrement du produit.</h1>');
+        }
 
-        return new Response($success ? 'Product saved successfully!' : 'Failed to save product.');
+        return $this->render('product/product.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

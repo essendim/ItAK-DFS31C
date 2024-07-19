@@ -1,9 +1,10 @@
 <?php
 // src/Form/ProductType.php
 
+// src/Form/ProductType.php
 namespace App\Form;
 
-use App\Entity\Product;
+use App\Entity\Produit;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,16 +17,13 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('price', TextType::class)
-            ->add('save', SubmitType::class, ['label' => 'Save Product'])
-        ;
+            ->add('save', SubmitType::class, ['label' => 'Create Produit']);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Product::class,
+            'data_class' => Produit::class,
         ]);
     }
 }
-?>

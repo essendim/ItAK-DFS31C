@@ -2,9 +2,9 @@
 
 namespace App\Persistence;
 
-use App\Entity\Produit;
+use App\Entity\Product;
 
 interface ProductPersistenceInterface
 {
-    public function save(Produit $produit): bool;
+    public function save(Product $produit): bool;
 }

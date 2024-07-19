@@ -2,7 +2,7 @@
 
 namespace App\Persistence;
 
-use App\Entity\Produit;
+use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
 
 class SqlPersistence implements ProductPersistenceInterface
@@ -14,7 +14,7 @@ class SqlPersistence implements ProductPersistenceInterface
         $this->entityManager = $entityManager;
     }
 
-    public function save(Produit $product): bool
+    public function save(Product $product): bool
     {
         try {
             $this->entityManager->persist($product);

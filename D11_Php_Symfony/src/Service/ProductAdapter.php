@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use App\Entity\Produit;
+use App\Entity\Product;
 use App\Persistence\ProductPersistenceInterface;
 
 class ProductAdapter
@@ -14,7 +14,7 @@ class ProductAdapter
         $this->persistence = $persistence;
     }
 
-    public function save(Produit $produit): bool
+    public function save(Product $produit): bool
     {
         // Utilisez la méthode de persistence pour sauvegarder le produit
         return $this->persistence->save($produit);

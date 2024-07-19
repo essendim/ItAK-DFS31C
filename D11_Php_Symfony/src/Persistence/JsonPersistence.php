@@ -2,7 +2,7 @@
 
 namespace App\Persistence;
 
-use App\Entity\Produit;
+use App\Entity\Product;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
@@ -15,7 +15,7 @@ class JsonPersistence implements ProductPersistenceInterface
         $this->filePath = $filePath;
     }
 
-    public function save(Produit $product): bool
+    public function save(Product $product): bool
     {
         $fs = new Filesystem();
 

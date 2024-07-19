@@ -1,15 +1,16 @@
 # config/services.yaml
 services:
     _defaults:
-        autowire: true      # Injection automatique des dépendances
-        autoconfigure: true # Autoconfiguration des services
-        public: false       # Les services sont privés par défaut
+        autowire: true
+        autoconfigure: true
+        public: false
 
-    # Configuration du contrôleur
+    # Configuration du contrôleur ProductController
     App\Controller\ProductController:
         public: true
         arguments:
             $productAdapter: '@App\Service\ProductAdapter'
+            $productRepository: '@App\Repository\ProductRepository'
 
     # Configuration de ProductAdapter
     App\Service\ProductAdapter:
@@ -29,6 +30,8 @@ services:
     # Liaison de l'interface ProductPersistenceInterface avec SqlPersistence
     App\Persistence\ProductPersistenceInterface: '@App\Persistence\SqlPersistence'
 
-    # Ajout de cette ligne pour garantir que HelloWorldController est bien configuré
+    App\Repository\ProductRepository:
+        autowire: true
+        autoconfigure: true
     App\Controller\HelloWorldController:
         tags: ['controller.service_arguments']

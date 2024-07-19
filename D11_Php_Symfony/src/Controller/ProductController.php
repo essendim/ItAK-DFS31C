@@ -35,7 +35,7 @@ class ProductController extends AbstractController
 
             // Ajouter un message de succès ou d'erreur à la session
             if ($success) {
-                $this->addFlash('success', 'Product enregistré avec succès !');
+                $this->addFlash('success', 'Produit enregistré avec succès !');
             } else {
                 $this->addFlash('error', 'Échec de l\'enregistrement du produit.');
             }

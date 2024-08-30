@@ -11,6 +11,7 @@ La pull request devra suivre le format "Nom Prenom - Titre exercice".
 
 
   - [D70 - Git / Github / Systèmes de versionning](D70_Git/Exercices.md)
+main
   
   
 ![Humorous Duck GIF](https://i.pinimg.com/originals/04/2b/29/042b2946a31f710750df610ae15319a0.gif)
@@ -28,3 +29,9 @@ main
   - [Livrer son travail](docs/workflow.md)
 
  main
+
+
+## Comme ça on aime les Gif ??
+
+![Un conflit ! de canard ! HAHA](https://media1.tenor.com/m/_unefcDI8B8AAAAC/pattes-de-canard-funny.gif "DES PATTES DE CANAAAAAAAAAAAAAAAAAAARD")
+ rebase_me

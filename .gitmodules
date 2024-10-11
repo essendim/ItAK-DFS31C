@@ -1,0 +1,6 @@
+[submodule "D56 - API REST/api-format"]
+	path = D56 - API REST/api-format
+	url = https://github.com/essendim/api-format.git
+[submodule "D56 - API REST/location-weather"]
+	path = D56 - API REST/location-weather
+	url = https://github.com/essendim/location-weather.git
